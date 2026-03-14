@@ -1,0 +1,38 @@
+import fs from "fs-extra";
+import { scrapePage } from "../services/scraperService.js";
+import { generatePlaywrightTest } from "../services/aiService.js";
+
+export const generateTest = async (req, res) => {
+    try {
+        const { url } = req.body;
+
+        if (!url) {
+            return res.status(400).json({ error: "URL required" });
+        }
+
+        console.log("Scraping page...");
+
+        const html = await scrapePage(url);
+
+        console.log("Generating AI test...");
+
+        const testCode = await generatePlaywrightTest(url, html);
+
+        const filePath = `generated-tests/generated.spec.js`;
+
+        await fs.outputFile(filePath, testCode);
+
+        res.json({
+            code: testCode
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            error: "Test generation failed"
+        });
+
+    }
+};
