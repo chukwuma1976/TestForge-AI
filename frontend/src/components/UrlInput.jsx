@@ -36,7 +36,10 @@ export default function UrlInput({ setCode }) {
                 style={{ width: "400px", padding: "10px" }}
             />
 
-            <button onClick={handleGenerate}>
+            <button
+                onClick={handleGenerate}
+                style={{ width: "150px", padding: "10px" }}
+            >
                 Generate Test
             </button>
 

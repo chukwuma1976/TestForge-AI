@@ -154,6 +154,8 @@ TestForge AI explores how Large Language Models can accelerate this process by a
 
 # Author
 
+## Chukwuma Anyadike
+
 Automation Engineer specializing in:
 
 * Test Automation Frameworks
