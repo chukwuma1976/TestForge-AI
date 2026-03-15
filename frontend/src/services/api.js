@@ -4,5 +4,5 @@ const API = axios.create({
     baseURL: "http://localhost:3000/api"
 });
 
-export const generateTest = (url) =>
-    API.post("/tests/generate", { url });
+export const generateTest = (payload) =>
+    API.post("/tests/generate", payload);

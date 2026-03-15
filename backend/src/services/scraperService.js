@@ -6,7 +6,11 @@ export async function scrapePage(url) {
 
     const page = await browser.newPage();
 
-    await page.goto(url, { waitUntil: "domcontentloaded" });
+    await page.goto(url, {
+        waitUntil: "networkidle",
+        timeout: 30000
+    });
+
 
     const html = await page.content();
 

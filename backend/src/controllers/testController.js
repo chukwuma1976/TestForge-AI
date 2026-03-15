@@ -3,8 +3,10 @@ import { scrapePage } from "../services/scraperService.js";
 import { generatePlaywrightTest } from "../services/aiService.js";
 
 export const generateTest = async (req, res) => {
+
     try {
-        const { url } = req.body;
+
+        const { url, language } = req.body;
 
         if (!url) {
             return res.status(400).json({ error: "URL required" });
@@ -16,9 +18,9 @@ export const generateTest = async (req, res) => {
 
         console.log("Generating AI test...");
 
-        const testCode = await generatePlaywrightTest(url, html);
+        const testCode = await generatePlaywrightTest(url, html, language);
 
-        const filePath = `generated-tests/generated.spec.js`;
+        const filePath = `generated-tests/generated.spec`;
 
         await fs.outputFile(filePath, testCode);
 
@@ -35,4 +37,5 @@ export const generateTest = async (req, res) => {
         });
 
     }
+
 };
