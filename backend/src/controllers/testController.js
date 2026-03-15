@@ -6,7 +6,7 @@ export const generateTest = async (req, res) => {
 
     try {
 
-        const { url, language } = req.body;
+        const { url, automationTool, language } = req.body;
 
         if (!url) {
             return res.status(400).json({ error: "URL required" });
@@ -18,7 +18,7 @@ export const generateTest = async (req, res) => {
 
         console.log("Generating AI test...");
 
-        const testCode = await generatePlaywrightTest(url, html, language);
+        const testCode = await generatePlaywrightTest(url, html, automationTool, language);
 
         const filePath = `generated-tests/generated.spec`;
 

@@ -1,8 +1,9 @@
 export default function CodeViewer({ code }) {
 
     const cleaned = code
-        .replace(/```javascript/g, "")
-        .replace(/```/g, "");
+        .replace(/```[a-zA-Z]*\n?/g, "")
+        .replace(/```/g, "")
+        .trim();
 
     const downloadFile = () => {
 

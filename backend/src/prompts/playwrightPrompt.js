@@ -1,9 +1,9 @@
-export function buildPrompt(url, html, language) {
+export function buildPrompt(url, html, automationTool, language) {
 
     return `
 You are a senior QA automation engineer.
 
-Analyze the provided website HTML and generate Playwright automation code
+Analyze the provided website HTML and generate ${automationTool} automation code
 using the Page Object Model design pattern.
 
 Website URL:
@@ -17,8 +17,8 @@ ${language}
 
 Requirements:
 
-- Use Playwright with ${language}
-- Follow Playwright best practices for ${language}
+- Use ${automationTool} with ${language}
+- Follow ${automationTool} best practices for ${language}
 - Use async/await or the appropriate syntax for ${language}
 - Use realistic selectors derived from the HTML
 - Follow the Page Object Model architecture
@@ -38,7 +38,7 @@ Output Structure:
 Generate multiple files including:
 
 1. One or more Page Object classes
-2. One or more Playwright test files
+2. One or more ${automationTool} test files
 
 Each Page Object:
 - Represents a UI page or component
