@@ -37,8 +37,6 @@ export default function UrlInput({ setCode }) {
                 style={{ width: "400px", padding: "10px", marginBottom: "10px" }}
             />
 
-            <br />
-
             <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
@@ -50,8 +48,6 @@ export default function UrlInput({ setCode }) {
                 <option>Java</option>
                 <option>C#</option>
             </select>
-
-            <br />
 
             <button
                 onClick={handleGenerate}

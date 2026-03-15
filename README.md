@@ -1,12 +1,40 @@
 # TestForge AI
 
+![Node](https://img.shields.io/badge/Node.js-Backend-green)
+![React](https://img.shields.io/badge/React-Frontend-blue)
+![Playwright](https://img.shields.io/badge/Playwright-Automation-orange)
+![OpenAI](https://img.shields.io/badge/OpenAI-AI-purple)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
+
 AI-powered automation test generator.
 
-TestForge AI analyzes a webpage and automatically generates Playwright automation tests using Large Language Models.
+TestForge AI analyzes a webpage and automatically generates Playwright automation tests in multiple programming languages using Large Language Models.
 
-This project demonstrates how AI can accelerate QA automation by generating runnable test scripts directly from a URL.
+The application demonstrates how AI can accelerate QA automation by generating runnable test scripts directly from a URL.
 
 This project explores how AI can assist SDETs by automatically generating automation tests from real web applications.
+
+---
+# UI Preview
+
+TestForge AI allows users to:
+
+• Enter a website URL  
+• Select a Playwright language  
+• Generate automation tests using AI
+
+Example interface:
+
+![TestForge UI](docs/testforge-ui.png)
+
+# Key Features
+
+* AI-generated Playwright automation tests
+* Page Object Model generation
+* Dynamic webpage analysis using Playwright
+* Multi-language test generation
+* Modern React frontend interface
+* Full stack architecture (React + Node + Express)
 
 ---
 
@@ -16,13 +44,22 @@ User enters a URL:
 
 https://opensource-demo.orangehrmlive.com
 
+Language options:
+
+JavaScript
+TypeScript
+Python
+Java
+C#
+
 TestForge AI:
 
 1. Loads the webpage using Playwright
-2. Extracts the DOM
-3. Sends the page content to an LLM
-4. Generates a Playwright automation test
-5. Saves the generated test to disk
+2. Extracts the rendered DOM
+3. Sends the page content and selected language to an LLM
+4. Generates Playwright automation tests using the Page Object Model
+5. Saves the generated test files to disk
+6. Displays the generated code in the UI
 
 Example output:
 
@@ -43,7 +80,6 @@ test('login test', async ({ page }) => {
 
 })
 ```
-
 ---
 
 # Tech Stack
@@ -72,10 +108,31 @@ Express API
       ↓
 Playwright Scraper
       ↓
+OpenAI Prompt Builder
+      ↓
 OpenAI API
       ↓
-Generated Playwright Test
+Generated Playwright Tests
 ```
+---
+# Request Flow
+
+Frontend sends the following payload to the backend:
+
+```json
+{
+  "url": "https://example.com",
+  "language": "JavaScript"
+}
+```
+
+The backend then:
+
+1. Scrapes the page using Playwright
+2. Extracts the DOM
+3. Builds an AI prompt including the selected language
+4. Sends the prompt to OpenAI
+5. Returns generated test code to the frontend
 
 ---
 
@@ -87,21 +144,34 @@ testforge-ai
 ├── backend
 │   ├── src
 │   │   ├── controllers
+│   │   │   └── testController.js
+│   │   │
 │   │   ├── routes
+│   │   │   └── testRoutes.js
+│   │   │
 │   │   ├── services
+│   │   │   ├── aiService.js
+│   │   │   └── scraperService.js
+│   │   │
 │   │   └── prompts
+│   │       └── playwrightPrompt.js
 │   │
 │   └── generated-tests
 │
 ├── frontend
 │   ├── src
 │   │   ├── components
+│   │   │   ├── UrlInput.jsx
+│   │   │   └── CodeViewer.jsx
+│   │   │
 │   │   └── services
+│   │       └── api.js
 │   │
 │   └── index.html
 │
 ├── .gitignore
 └── README.md
+
 ```
 
 ---
@@ -136,19 +206,23 @@ http://localhost:5173
 
 TestForge AI will evolve into an AI-powered QA automation platform capable of:
 
-* Generating Page Objects
-* Generating API tests
+* Generate multiple Page Objects automatically
+* Generate API automation tests
 * Generating performance tests (k6)
 * Generating full automation frameworks
-* Fixing failed locators automatically
+* Add support for additional automation tools (Selenium, Cypress)
+* AI-based locator healing
+* AI-assisted test failure analysis
 
 ---
 
 # Why This Project Exists
 
-Automation engineers spend a significant amount of time writing repetitive test code.
+Automation engineers spend significant time writing repetitive test code.
 
-TestForge AI explores how Large Language Models can accelerate this process by automatically generating test scripts from a webpage.
+TestForge AI explores how Large Language Models can assist automation engineers by automatically generating test scripts directly from real web applications.
+
+The goal is to demonstrate how **AI-assisted developer tooling can accelerate QA automation workflows.**
 
 ---
 
