@@ -63,6 +63,22 @@ Rules:
 - Use correct ${language} syntax
 - Include necessary imports
 - Write clean maintainable automation code
-- Return ONLY code
+- Return the generated files as JSON in the following format:
+
+{
+ "files":[
+  {
+   "filename":"LoginPage.js",
+   "code":"..."
+  },
+  {
+   "filename":"login.spec.js",
+   "code":"..."
+  }
+ ]
+}
+
+Do not include markdown or explanations.
+Return JSON only.
 `;
 }
