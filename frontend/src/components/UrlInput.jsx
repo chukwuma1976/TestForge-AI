@@ -27,7 +27,7 @@ export default function UrlInput({ setCode }) {
                 automationTool,
                 language
             });
-            setCode(res.data.code);
+            setCode(res.data.files);
 
         } catch (err) {
             alert("Generation failed");

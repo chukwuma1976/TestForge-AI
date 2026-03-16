@@ -4,19 +4,17 @@ import CodeViewer from "./components/CodeViewer";
 
 function App() {
 
-  const [code, setCode] = useState("");
+  const [files, setFiles] = useState([]);
 
   return (
 
     <div style={{ padding: "40px" }}>
 
       <h1>TestForge AI</h1>
-
       <h3>AI Automation Test Generator</h3>
 
-      <UrlInput setCode={setCode} />
-
-      <CodeViewer code={code} />
+      <UrlInput setCode={setFiles} />
+      <CodeViewer files={files} />
 
     </div>
 

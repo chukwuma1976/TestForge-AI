@@ -1,6 +1,7 @@
 import fs from "fs-extra";
 import { scrapePage } from "../services/scraperService.js";
 import { generatePlaywrightTest } from "../services/aiService.js";
+import { parseGeneratedFiles } from "../utils/parseGeneratedFiles.js";
 
 export const generateTest = async (req, res) => {
 
@@ -24,8 +25,10 @@ export const generateTest = async (req, res) => {
 
         await fs.outputFile(filePath, testCode);
 
+        const files = parseGeneratedFiles(testCode);
+
         res.json({
-            code: testCode
+            files
         });
 
     } catch (error) {
