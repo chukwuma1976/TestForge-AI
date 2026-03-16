@@ -1,12 +1,13 @@
 import fs from "fs-extra";
 import { scrapePage } from "../services/scraperService.js";
 import { generatePlaywrightTest } from "../services/aiService.js";
+import { parseGeneratedFiles } from "../utils/parseGeneratedFiles.js";
 
 export const generateTest = async (req, res) => {
 
     try {
 
-        const { url, language } = req.body;
+        const { url, automationTool, language } = req.body;
 
         if (!url) {
             return res.status(400).json({ error: "URL required" });
@@ -18,14 +19,16 @@ export const generateTest = async (req, res) => {
 
         console.log("Generating AI test...");
 
-        const testCode = await generatePlaywrightTest(url, html, language);
+        const testCode = await generatePlaywrightTest(url, html, automationTool, language);
 
         const filePath = `generated-tests/generated.spec`;
 
         await fs.outputFile(filePath, testCode);
 
+        const files = parseGeneratedFiles(testCode);
+
         res.json({
-            code: testCode
+            files
         });
 
     } catch (error) {

@@ -1,0 +1,25 @@
+{
+    "Playwright": [
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "Java",
+        "C#"
+    ],
+    "Selenium": [
+        "Java",
+        "Python",
+        "JavaScript",
+        "C#",
+        "Ruby",
+        "Kotlin"
+    ],
+    "Cypress": [
+        "JavaScript",
+        "TypeScript"
+    ],
+    "WebdriverIO": [
+        "JavaScript",
+        "TypeScript"
+    ]
+}

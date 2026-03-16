@@ -8,7 +8,7 @@
 
 AI-powered automation test generator.
 
-TestForge AI analyzes a webpage and automatically generates Playwright automation tests in multiple programming languages using Large Language Models.
+TestForge AI analyzes a webpage and automatically generates automation tests with different tools in multiple programming languages using Large Language Models.
 
 The application demonstrates how AI can accelerate QA automation by generating runnable test scripts directly from a URL.
 
@@ -20,7 +20,8 @@ This project explores how AI can assist SDETs by automatically generating automa
 TestForge AI allows users to:
 
 • Enter a website URL  
-• Select a Playwright language  
+• Select an automation tool
+• Select a programming language  
 • Generate automation tests using AI
 
 Example interface:
@@ -40,17 +41,11 @@ Example interface:
 
 # Demo
 
-User enters a URL:
+User enters a URL: https://opensource-demo.orangehrmlive.com
 
-https://opensource-demo.orangehrmlive.com
+User selects an automation tool: Playwright
 
-Language options:
-
-JavaScript
-TypeScript
-Python
-Java
-C#
+User selects a programming language: Java
 
 TestForge AI:
 

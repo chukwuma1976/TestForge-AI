@@ -1,61 +1,49 @@
-export default function CodeViewer({ code }) {
+import { useState } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-    const cleaned = code
-        .replace(/```javascript/g, "")
-        .replace(/```/g, "");
+export default function CodeViewer({ files }) {
 
-    const downloadFile = () => {
+    const [activeFile, setActiveFile] = useState(0);
 
-        const blob = new Blob([cleaned], {
-            type: "text/javascript"
-        });
-
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-
-        a.href = url;
-        a.download = "generated.spec.js";
-
-        document.body.appendChild(a);
-
-        a.click();
-
-        document.body.removeChild(a);
-
-    };
+    if (!files || files.length === 0) return null;
 
     return (
-
         <div>
 
-            <button
-                onClick={downloadFile}
-                style={{
-                    padding: "10px 10px",
-                    marginTop: "10px",
-                    cursor: "pointer"
-                }}
-            >
-                Download Playwright Test
-            </button>
+            <div style={{ marginBottom: "10px" }}>
+                {files.map((file, index) => (
+                    <button
+                        key={index}
+                        onClick={() => setActiveFile(index)}
+                        style={{ marginRight: "5px" }}
+                    >
+                        {file.filename}
+                    </button>
+                ))}
+            </div>
 
-
-            <pre
+            <div
                 style={{
-                    background: "#111",
-                    color: "#0f0",
-                    padding: "20px",
                     textAlign: "left",
-                    overflowX: "auto",
-                    fontFamily: "monospace",
-                    lineHeight: "1.5"
+                    whiteSpace: "pre",
+                    fontFamily: "monospace"
                 }}
             >
-                {cleaned}
-            </pre>
+                <SyntaxHighlighter
+                    language="javascript"
+                    wrapLongLines={true}
+                    customStyle={{
+                        margin: 0,
+                        padding: "20px",
+                        whiteSpace: "pre"
+                    }}
+                >
+                    {files[activeFile].code}
+                </SyntaxHighlighter>
+
+            </div>
 
         </div>
-
     );
 }
