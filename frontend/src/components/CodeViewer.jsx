@@ -16,7 +16,16 @@ export default function CodeViewer({ files }) {
                     <button
                         key={index}
                         onClick={() => setActiveFile(index)}
-                        style={{ marginRight: "5px" }}
+                        style={{
+                            padding: "6px 12px",
+                            marginRight: "6px",
+                            border: "1px solid #ccc",
+                            borderBottom: activeFile === index ? "2px solid #007bff" : "1px solid #ccc",
+                            backgroundColor: activeFile === index ? "#007bff" : "#f5f5f5",
+                            color: activeFile === index ? "white" : "black",
+                            cursor: "pointer",
+                            borderRadius: "4px"
+                        }}
                     >
                         {file.filename}
                     </button>
