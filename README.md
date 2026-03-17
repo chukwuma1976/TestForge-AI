@@ -19,10 +19,12 @@ This project explores how AI can assist SDETs by automatically generating automa
 
 TestForge AI allows users to:
 
-• Enter a website URL  
-• Select an automation tool
-• Select a programming language  
-• Generate automation tests using AI
+* Enter a website URL  
+* Select an automation tool
+* Select a programming language  
+* Select type of tests to generate
+* Generate automation tests using AI
+* Download generated files
 
 Example interface:
 

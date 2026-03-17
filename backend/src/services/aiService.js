@@ -8,9 +8,9 @@ const client = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
 });
 
-export async function generatePlaywrightTest(url, html, automationTool, language) {
+export async function generatePlaywrightTest(url, html, automationTool, language, testType) {
 
-    const prompt = buildPrompt(url, html, automationTool, language);
+    const prompt = buildPrompt(url, html, automationTool, language, testType);
 
     const response = await client.chat.completions.create({
         model: "gpt-4.1-mini",

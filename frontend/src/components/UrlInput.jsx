@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { generateTest } from "../services/api";
 import automationConfig from "../utils/automationConfig.json";
+import { testTypes } from "../utils/testTypes.js";
 
 export default function UrlInput({ setCode }) {
 
@@ -10,6 +11,7 @@ export default function UrlInput({ setCode }) {
     const [language, setLanguage] = useState(
         automationConfig[tools[0]][0]
     );
+    const [testType, setTestType] = useState(testTypes[0]);
     const [loading, setLoading] = useState(false);
 
     const handleToolChange = (tool) => {
@@ -25,7 +27,8 @@ export default function UrlInput({ setCode }) {
             const res = await generateTest({
                 url,
                 automationTool,
-                language
+                language,
+                testType
             });
             setCode(res.data.files);
 
@@ -41,13 +44,13 @@ export default function UrlInput({ setCode }) {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="Enter website URL"
-                style={{ width: "400px", padding: "10px", marginBottom: "10px" }}
+                style={{ width: "400px", padding: "10px", margin: "2px" }}
             />
 
             <select
                 value={automationTool}
                 onChange={(e) => handleToolChange(e.target.value)}
-                style={{ width: "150px", padding: "10px", marginBottom: "10px" }}
+                style={{ width: "150px", padding: "10px", margin: "2px" }}
             >
                 {tools.map((tool) => (
                     <option key={tool} value={tool}>
@@ -59,7 +62,7 @@ export default function UrlInput({ setCode }) {
             <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                style={{ width: "150px", padding: "10px", marginBottom: "10px" }}
+                style={{ width: "150px", padding: "10px", margin: "2px" }}
             >
 
                 {automationConfig[automationTool].map((lang) => (
@@ -71,9 +74,40 @@ export default function UrlInput({ setCode }) {
                 ))}
             </select>
 
+            <select
+                value={testType}
+                onChange={(e) => setTestType(e.target.value)}
+                style={{ width: "150px", padding: "10px", margin: "2px" }}
+            >
+                {testTypes.map((test) => (
+                    <option key={test} value={test}>
+                        {test}
+                    </option>
+                ))}
+            </select>
+
             <button
                 onClick={handleGenerate}
-                style={{ width: "150px", padding: "10px" }}
+                style={{
+                    width: "150px",
+                    padding: "10px",
+                    border: "none",
+                    borderRadius: "4px",
+                    backgroundColor: "#2e7d32",
+                    color: "white",
+                    fontWeight: "500",
+                    cursor: "pointer",
+                    boxShadow: "0px 2px 4px rgba(0,0,0,0.2)",
+                    transition: "all 0.2s ease"
+                }}
+                onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#1b5e20";
+                    e.target.style.boxShadow = "0px 4px 8px rgba(0,0,0,0.3)";
+                }}
+                onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#2e7d32";
+                    e.target.style.boxShadow = "0px 2px 4px rgba(0,0,0,0.2)";
+                }}
             >
                 Generate Test
             </button>
