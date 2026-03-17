@@ -63,7 +63,7 @@ export default function CodeViewer({ files }) {
 
             <div
                 style={{
-                    maxHeight: "500px",
+                    maxHeight: "450px",
                     overflow: "auto",
                     border: "1px solid #ccc",
                     padding: "10px"

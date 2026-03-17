@@ -43,11 +43,12 @@ Example interface:
 
 # Demo
 
-User enters a URL: https://opensource-demo.orangehrmlive.com
+User:
 
-User selects an automation tool: Playwright
-
-User selects a programming language: Java
+* Enters a URL: https://opensource-demo.orangehrmlive.com
+* Selects an automation tool: Playwright
+* Selects a programming language: Java
+* Selects the type of tests to generate
 
 TestForge AI:
 
@@ -136,12 +137,13 @@ The backend then:
 # Project Structure
 
 ```
-testforge-ai
+testforge-ai 
 │
 ├── backend
 │   ├── src
 │   │   ├── controllers
-│   │   │   └── testController.js
+│   │   │   ├── testController.js
+│   │   │   └── fileDownloadController.js   <-- NEW
 │   │   │
 │   │   ├── routes
 │   │   │   └── testRoutes.js
@@ -150,8 +152,11 @@ testforge-ai
 │   │   │   ├── aiService.js
 │   │   │   └── scraperService.js
 │   │   │
-│   │   └── prompts
-│   │       └── playwrightPrompt.js
+│   │   ├── prompts
+│   │   │   └── playwrightPrompt.js
+│   │   │
+│   │   └── utils
+│   │       └── (optional future helpers)
 │   │
 │   └── generated-tests
 │
@@ -161,8 +166,12 @@ testforge-ai
 │   │   │   ├── UrlInput.jsx
 │   │   │   └── CodeViewer.jsx
 │   │   │
-│   │   └── services
-│   │       └── api.js
+│   │   ├── services
+│   │   │   └── api.js
+│   │   │
+│   │   └── utils
+│   │       ├── automationConfig.json   <-- NEW (tools + languages)
+│   │       └── testTypes.js            <-- NEW (UI/API/Performance)
 │   │
 │   └── index.html
 │
