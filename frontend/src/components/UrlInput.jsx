@@ -88,7 +88,26 @@ export default function UrlInput({ setCode }) {
 
             <button
                 onClick={handleGenerate}
-                style={{ width: "150px", padding: "10px" }}
+                style={{
+                    width: "150px",
+                    padding: "10px",
+                    border: "none",
+                    borderRadius: "4px",
+                    backgroundColor: "#2e7d32",
+                    color: "white",
+                    fontWeight: "500",
+                    cursor: "pointer",
+                    boxShadow: "0px 2px 4px rgba(0,0,0,0.2)",
+                    transition: "all 0.2s ease"
+                }}
+                onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = "#1b5e20";
+                    e.target.style.boxShadow = "0px 4px 8px rgba(0,0,0,0.3)";
+                }}
+                onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = "#2e7d32";
+                    e.target.style.boxShadow = "0px 2px 4px rgba(0,0,0,0.2)";
+                }}
             >
                 Generate Test
             </button>

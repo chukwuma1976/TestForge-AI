@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { downloadProject } from "../utils/downloadProject";
 
 export default function CodeViewer({ files }) {
 
@@ -30,27 +30,48 @@ export default function CodeViewer({ files }) {
                         {file.filename}
                     </button>
                 ))}
+                <button
+                    onClick={() => downloadProject(files)}
+                    style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        padding: "6px 12px",
+                        marginRight: "6px",
+                        border: "none",
+                        borderRadius: "10px",
+                        backgroundColor: "#1976d2",
+                        color: "white",
+                        fontWeight: "500",
+                        cursor: "pointer",
+                        boxShadow: "0px 2px 4px rgba(0,0,0,0.2)",
+                        transition: "all 0.2s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = "#1565c0";
+                        e.target.style.boxShadow = "0px 4px 8px rgba(0,0,0,0.3)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = "#1976d2";
+                        e.target.style.boxShadow = "0px 2px 4px rgba(0,0,0,0.2)";
+                    }}
+                >
+                    <span style={{ fontSize: "16px" }}>⬇</span>
+                    Download Files
+                </button>
             </div>
 
             <div
                 style={{
-                    textAlign: "left",
-                    whiteSpace: "pre",
-                    fontFamily: "monospace"
+                    maxHeight: "500px",
+                    overflow: "auto",
+                    border: "1px solid #ccc",
+                    padding: "10px"
                 }}
             >
-                <SyntaxHighlighter
-                    language="javascript"
-                    wrapLongLines={true}
-                    customStyle={{
-                        margin: 0,
-                        padding: "20px",
-                        whiteSpace: "pre"
-                    }}
-                >
+                <SyntaxHighlighter language="javascript">
                     {files[activeFile].code}
                 </SyntaxHighlighter>
-
             </div>
 
         </div>

@@ -8,7 +8,7 @@ function App() {
 
   return (
 
-    <div style={{ padding: "40px" }}>
+    <div>
 
       <h1>TestForge AI</h1>
       <h3>AI Automation Test Generator</h3>
