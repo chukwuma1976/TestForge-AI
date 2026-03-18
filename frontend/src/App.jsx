@@ -7,17 +7,13 @@ function App() {
   const [files, setFiles] = useState([]);
 
   return (
-
     <div>
-
       <h1>TestForge AI</h1>
       <h3>AI Automation Test Generator</h3>
 
       <UrlInput setCode={setFiles} />
       <CodeViewer files={files} />
-
     </div>
-
   );
 }
 
