@@ -119,8 +119,10 @@ Frontend sends the following payload to the backend:
 
 ```json
 {
-  "url": "https://example.com",
-  "language": "JavaScript"
+    "url": "https://opensource-demo.orangehrmlive.com",
+    "automationTool": "Playwright",
+    "language": "Java",
+    "testType": "UI Tests"
 }
 ```
 
@@ -212,11 +214,7 @@ http://localhost:5173
 
 TestForge AI will evolve into an AI-powered QA automation platform capable of:
 
-* Generate multiple Page Objects automatically
-* Generate API automation tests
-* Generating performance tests (k6)
 * Generating full automation frameworks
-* Add support for additional automation tools (Selenium, Cypress)
 * AI-based locator healing
 * AI-assisted test failure analysis
 
