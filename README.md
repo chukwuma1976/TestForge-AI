@@ -210,13 +210,19 @@ http://localhost:5173
 
 ---
 
-# Future Improvements
+# 🔮 Future Improvements
 
-TestForge AI will evolve into an AI-powered QA automation platform capable of:
+TestForge AI is designed to evolve into a more intelligent, end-to-end QA automation platform. Planned enhancements include:
 
-* Generating full automation frameworks
-* AI-based locator healing
-* AI-assisted test failure analysis
+* **Full Automation Framework Generation**: Generate complete, production-ready test frameworks with scalable structure, configuration, and best practices built in.
+
+* **AI-Driven Locator Resilience**: Implement self-healing selectors that adapt to UI changes, reducing test flakiness and maintenance overhead.
+
+* **Intelligent Test Failure Analysis**: Analyze failed test executions and provide actionable insights, including probable root causes and suggested fixes.
+
+* **Expanded Tooling & Language Support**: Broaden support across additional automation frameworks, languages, and testing strategies.
+
+* **CI/CD Integration Enhancements**: Enable seamless integration with modern pipelines for automated test execution and reporting.
 
 ---
 

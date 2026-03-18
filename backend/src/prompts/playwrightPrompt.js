@@ -2,6 +2,13 @@ export function buildPrompt(url, html, automationTool, language, testType) {
 
     let testInstructions = "";
 
+    // 🔥 Determine test architecture style
+    const useFixtures =
+        automationTool.toLowerCase().includes("playwright") &&
+        (language.toLowerCase().includes("typescript") || language.toLowerCase().includes("javascript"));
+
+    const useBaseTest = !useFixtures;
+
     if (testType === "UI Tests") {
         testInstructions = `
 UI TEST REQUIREMENTS:
@@ -11,6 +18,19 @@ UI TEST REQUIREMENTS:
 - Use realistic selectors derived from the HTML
 - Represent user workflows such as login, navigation, and form interactions
 - Follow ${automationTool} best practices for UI automation
+
+TEST ARCHITECTURE:
+
+${useFixtures ? `
+- Use Playwright fixture-based architecture (test.extend)
+- Define reusable fixtures for setup (e.g., page, context, authenticated user)
+- Use beforeEach / test hooks where appropriate
+- Avoid BaseTest classes
+` : `
+- Generate a BaseTest class to handle setup and teardown
+- Use inheritance so test classes extend BaseTest
+- Centralize browser/session initialization in BaseTest
+`}
 
 Examples of possible page objects:
 
@@ -46,6 +66,18 @@ API TEST REQUIREMENTS:
 /api/admin
 /api/auth
 
+TEST ARCHITECTURE:
+
+${useFixtures ? `
+- Use lightweight reusable request setup (fixtures or helper functions)
+- Avoid BaseTest classes
+- Use shared request context setup where applicable
+` : `
+- Generate a BaseTest API class for setup and teardown
+- Use inheritance so test classes extend BaseTest
+- Centralize HTTP client configuration
+`}
+
 - Use ${automationTool} capabilities for API testing if available
 - If ${automationTool} does not support API testing directly, generate appropriate API test code for ${language}
 
@@ -68,39 +100,28 @@ Generate THREE types of performance tests:
 2. Load Test
 3. Spike Test
 
-These tests should simulate different traffic patterns to validate system performance.
-
 Smoke Test:
 - Simulates a very small number of users
-- Confirms the application responds correctly under light traffic
-- Verifies basic endpoint availability
 - Example: 1–5 virtual users
 
 Load Test:
 - Simulates expected production traffic
-- Sustains multiple concurrent users over time
-- Measures response time and stability
-- Example: 50–200 virtual users depending on scenario
+- Example: 50–200 virtual users
 
 Spike Test:
-- Simulates sudden large bursts of traffic
-- Rapidly increases user load
-- Tests system resilience and recovery
+- Simulates sudden bursts of traffic
 - Example: jump from 10 users to 500 users quickly
 
-If possible, generate scripts compatible with common performance testing tools such as:
+- Prefer tools like k6 for implementation
+- Use configurable parameters for VUs and duration
 
-- k6
-- HTTP request simulation
+Each test should:
 
-Performance tests should:
+- Send HTTP requests to realistic endpoints
+- Validate response time and status codes
+- Be structured for easy execution and modification
 
-- Send repeated HTTP requests to realistic application endpoints
-- Simulate concurrent users
-- Validate response time and HTTP status codes
-- Use clear configuration variables for user load and duration
-
-Generate separate files for each performance test type, such as:
+Generate separate files:
 
 smokeTest.js
 loadTest.js
@@ -130,7 +151,7 @@ Requirements:
 - Use ${automationTool} with ${language}
 - Follow ${automationTool} best practices for ${language}
 - Use async/await or appropriate syntax for ${language}
-- Write clean maintainable automation code
+- Write clean, maintainable, production-quality automation code
 
 ${testInstructions}
 
@@ -138,12 +159,13 @@ Output Structure:
 
 Generate multiple files including:
 
-1. One or more automation classes or utilities
-2. One or more test files
+1. Page Object classes or utilities
+2. Test files
+${useBaseTest ? "3. BaseTest class (if applicable)" : ""}
 
 Output Format (VERY IMPORTANT):
 
-Return the generated files as JSON in the following format:
+Return the generated files as JSON:
 
 {
  "files":[
@@ -158,10 +180,11 @@ Rules:
 
 - Use correct ${language} syntax
 - Include necessary imports
-- Write clean maintainable automation code
-- Ensure filenames match the code contents
+- Ensure consistency between files
+- Ensure file names match contents
+- Do NOT nest files in folders
+- Do NOT include markdown or explanations
 
-Do not include markdown or explanations.
 Return JSON only.
 `;
 }
