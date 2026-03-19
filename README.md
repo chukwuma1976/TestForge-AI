@@ -1,10 +1,11 @@
 # TestForge AI
 
+![GitHub release](https://img.shields.io/github/v/release/chukwuma1976/testforge-ai)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
 ![Node](https://img.shields.io/badge/Node.js-Backend-green)
 ![React](https://img.shields.io/badge/React-Frontend-blue)
 ![Playwright](https://img.shields.io/badge/Playwright-Automation-orange)
 ![OpenAI](https://img.shields.io/badge/OpenAI-AI-purple)
-![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
 AI-powered automation test generator.
 
