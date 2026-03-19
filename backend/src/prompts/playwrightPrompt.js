@@ -134,6 +134,14 @@ You are a senior QA automation engineer.
 
 Analyze the provided website HTML and generate ${automationTool} automation code.
 
+MULTI-PAGE CONTEXT:
+
+The HTML may contain multiple pages separated by:
+
+<!-- PAGE: URL -->
+
+Use this to identify different pages and generate appropriate Page Objects and test flows across pages.
+
 Website URL:
 ${url}
 
