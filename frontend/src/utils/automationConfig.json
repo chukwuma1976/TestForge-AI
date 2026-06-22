@@ -21,5 +21,15 @@
     "WebdriverIO": [
         "JavaScript",
         "TypeScript"
+    ],
+    "Appium": [
+        "Java",
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "C#",
+        "Ruby",
+        "PHP",
+        "Kotlin"
     ]
 }
